@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../src/supabaseClient';
 import { useNavigate } from 'react-router-dom';
-
+import Navbar from '../../Components/Navbar';
 export default function Profile() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -158,6 +158,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+        <Navbar/>
       {/* Profile Content */}
       <div className="max-w-4xl mx-auto px-6 py-8">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
