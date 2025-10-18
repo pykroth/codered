@@ -1,10 +1,10 @@
 
-import Header from './components/Header';
-import FileUpload from './components/FileUpload';
-import ResultsPanel from './components/ResultsPanel';
-import QASection from './components/QASection';
-import Footer from './components/Footer';
-import { MedicalProvider } from './context/MedicalContext';
+import Header from '../../Components/Header';
+import FileUpload from '../../Components/FileUpload';
+import ResultsPanel from '../../Components/ResultsPanel';
+import QASection from '../../Components/QASection';
+import Footer from '../../Components/Footer';
+import { MedicalProvider } from '../../context/MedicalContext';
 
 export default function UploadReport() {
  return (
