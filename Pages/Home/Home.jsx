@@ -1,8 +1,9 @@
 import { Upload, FileText, MessageSquare, Globe, Shield, ArrowRight, BookOpen, Heart } from 'lucide-react';
-
+import Navbar from '../../Components/Navbar';
 export default function MedLensHome() {
   return (
     <div className="min-h-screen bg-white">
+        <Navbar/>
       {/* Hero Section */}
       <div className="max-w-5xl mx-auto px-6 pt-24 pb-16">
         <div className="mb-20">
