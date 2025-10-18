@@ -65,9 +65,9 @@ const Navbar = () => {
                 <a href="/login" className="text-gray-700 hover:text-gray-900 px-4 py-2 rounded-lg transition font-medium">
                   Login
                 </a>
-                <a href="/signup" className="bg-gray-900 text-white hover:bg-gray-800 px-4 py-2 rounded-lg transition font-semibold">
-                  Sign Up
-                </a>
+                <a href="/login?mode=signup" className="bg-gray-900 text-white hover:bg-gray-800 px-4 py-2 rounded-lg transition font-semibold">
+            Sign Up
+            </a>
               </>
             )}
           </div>
@@ -106,12 +106,8 @@ const Navbar = () => {
                 >
                   Login
                 </a>
-                <a
-                  href="/signup"
-                  className="block bg-gray-900 text-white hover:bg-gray-800 px-4 py-2 rounded-lg transition font-semibold"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Sign Up
+              <a href="/login?mode=signup" className="bg-gray-900 text-white hover:bg-gray-800 px-4 py-2 rounded-lg transition font-semibold">
+                Sign Up
                 </a>
               </>
             )}
