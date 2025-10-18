@@ -1,6 +1,9 @@
 import { Upload, FileText, MessageSquare, Globe, Shield, ArrowRight, BookOpen, Heart } from 'lucide-react';
 import Navbar from '../../Components/Navbar';
+import { useNavigate } from "react-router-dom";
+import Footer from "../../Components/Footer";
 export default function MedLensHome() {
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen bg-white">
         <Navbar/>
@@ -20,10 +23,10 @@ export default function MedLensHome() {
             Understanding your health shouldn't require a medical degree. Upload any diagnosis or lab result and learn what it means—in plain language, in any language.
           </p>
 
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 inline-flex items-center gap-2">
+          {/* <button className="px-6 py-3 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 inline-flex items-center gap-2">
             Upload a report
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </button> */}
         </div>
 
         {/* Problem Statement */}
@@ -178,7 +181,8 @@ export default function MedLensHome() {
         <div className="text-center mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-12">
           <h2 className="text-3xl font-bold mb-4 text-gray-900">Ready to understand your health?</h2>
           <p className="text-gray-600 mb-6 max-w-xl mx-auto">Join thousands learning to take control of their healthcare through accessible education.</p>
-          <button className="px-8 py-4 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 text-lg inline-flex items-center gap-2">
+          <button className="px-8 py-4 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 text-lg inline-flex items-center gap-2"
+          onClick={() => navigate("/login")}>
             Try MedLens now
             <ArrowRight className="w-5 h-5" />
           </button>
@@ -194,6 +198,8 @@ export default function MedLensHome() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
+    
   );
 }

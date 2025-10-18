@@ -14,9 +14,6 @@ function App() {
         <Route path='/login' element={<Auth/>}/>
         <Route path='/profile' element={<Profile/>}/>
       </Routes>
-      <div>
-        <p className=''>hi</p>
-       </div>
        </Router>
     </>
   )
