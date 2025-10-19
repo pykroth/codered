@@ -32,7 +32,6 @@ Users can upload their medical documents, receive simplified interpretations, an
 | **Frontend** | ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB) ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?logo=react-router&logoColor=white) |
 | **Backend** | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) | ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white) |
 | **AI Model** | Google Gemini 2.0 Flash |
-| **AI Model** | Google Gemini 2.0 Flash |
 | **OCR** | Tesseract (local), pdfplumber |
 | **Voice Integration** | ElevenLabs API |
 | **Middleware** | CORS |
