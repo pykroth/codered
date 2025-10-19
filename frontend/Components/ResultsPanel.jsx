@@ -34,7 +34,8 @@ function ResultsPanel() {
     { value: 'tagalog', label: 'Tagalog' },
     { value: 'polish', label: 'Polish' },
     { value: 'dutch', label: 'Dutch' },
-    { value: 'greek', label: 'Greek' }
+    { value: 'greek', label: 'Greek' },
+    { value: 'khmer', label: 'Khmer' }
   ];
 
   const handleSimplify = async () => {

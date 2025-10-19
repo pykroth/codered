@@ -32,7 +32,8 @@ class TranslationService:
             "tagalog": "tl",
             "polish": "pl",
             "dutch": "nl",
-            "greek": "el"
+            "greek": "el",
+            "khmer": "km"
         }
         
         # Map language codes to full names for prompts
@@ -58,7 +59,8 @@ class TranslationService:
             "tagalog": "Tagalog",
             "polish": "Polish",
             "dutch": "Dutch",
-            "greek": "Greek"
+            "greek": "Greek",
+            "khmer": "Khmer"
         }
     
     def _initialize_client(self):
