@@ -5,6 +5,7 @@ import logging
 import subprocess
 import tempfile
 import os
+import pdfplumber
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -33,7 +34,7 @@ class OCRService:
     
     async def _extract_from_pdf(self, pdf_content: bytes) -> str:
         """
-        Extract text from PDF using JavaScript processor
+        Extract text from PDF using pdfplumber
         """
         try:
             # Create a temporary file for the PDF
@@ -42,26 +43,21 @@ class OCRService:
                 temp_file_path = temp_file.name
             
             try:
-                # Get the directory of this script
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-                js_processor_path = os.path.join(script_dir, 'pdf_processor.js')
+                # Extract text using pdfplumber
+                extracted_text = ""
+                with pdfplumber.open(temp_file_path) as pdf:
+                    for page in pdf.pages:
+                        page_text = page.extract_text()
+                        if page_text:
+                            extracted_text += page_text + "\n"
                 
-                # Run the JavaScript PDF processor
-                result = subprocess.run(
-                    ['node', js_processor_path, temp_file_path],
-                    capture_output=True,
-                    text=True,
-                    timeout=30
-                )
-                
-                if result.returncode == 0:
-                    extracted_text = result.stdout.strip()
-                    logger.info("Successfully extracted text from PDF using JavaScript processor")
-                    return extracted_text
+                if extracted_text.strip():
+                    logger.info(f"Successfully extracted {len(extracted_text)} characters from PDF")
+                    return extracted_text.strip()
                 else:
-                    logger.error(f"JavaScript processor failed: {result.stderr}")
-                    # Fallback to sample text for demo purposes
-                    return self._get_sample_medical_text()
+                    logger.warning("No text found in PDF, trying OCR fallback")
+                    # Fallback to OCR if no text found
+                    return await self._extract_from_pdf_ocr(pdf_content)
                     
             finally:
                 # Clean up temporary file
@@ -70,7 +66,51 @@ class OCRService:
             
         except Exception as e:
             logger.error(f"PDF text extraction failed: {str(e)}")
-            # Return sample text for demo purposes
+            # Try OCR fallback
+            try:
+                return await self._extract_from_pdf_ocr(pdf_content)
+            except Exception as ocr_error:
+                logger.error(f"OCR fallback also failed: {str(ocr_error)}")
+                return self._get_sample_medical_text()
+    
+    async def _extract_from_pdf_ocr(self, pdf_content: bytes) -> str:
+        """
+        Extract text from PDF using OCR (fallback method)
+        """
+        try:
+            # Create a temporary file for the PDF
+            with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as temp_file:
+                temp_file.write(pdf_content)
+                temp_file_path = temp_file.name
+            
+            try:
+                # Convert PDF to images and extract text using OCR
+                from pdf2image import convert_from_path
+                
+                # Convert PDF to images
+                images = convert_from_path(temp_file_path)
+                
+                extracted_text = ""
+                for i, image in enumerate(images):
+                    # Extract text from each page
+                    page_text = pytesseract.image_to_string(image, lang='eng')
+                    if page_text.strip():
+                        extracted_text += f"--- Page {i+1} ---\n{page_text}\n\n"
+                
+                if extracted_text.strip():
+                    logger.info(f"Successfully extracted text from PDF using OCR")
+                    return extracted_text.strip()
+                else:
+                    logger.warning("No text found in PDF using OCR")
+                    return self._get_sample_medical_text()
+                    
+            finally:
+                # Clean up temporary file
+                if os.path.exists(temp_file_path):
+                    os.unlink(temp_file_path)
+            
+        except Exception as e:
+            logger.error(f"PDF OCR extraction failed: {str(e)}")
             return self._get_sample_medical_text()
     
     async def _extract_from_image(self, image_content: bytes) -> str:

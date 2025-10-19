@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, FileText, Image, AlertCircle } from 'lucide-react';
 import { useMedical } from '../context/MedicalContext';
-import { uploadFile } from '../services/api';
+import { uploadFile } from '../src/services/api';
 
 function FileUpload() {
   const { state, dispatch } = useMedical();

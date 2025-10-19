@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MessageCircle, Send, Bot, User } from 'lucide-react';
 import { useMedical } from '../context/MedicalContext';
-import { askQuestion } from '../services/api';
+import { askQuestion } from '../src/services/api';
 import VoicePlayer from './VoicePlayer';
 
 function QASection() {

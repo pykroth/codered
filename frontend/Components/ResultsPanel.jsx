@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Brain, Languages, Copy, Check } from 'lucide-react';
 import { useMedical } from '../context/MedicalContext';
-import { simplifyText, translateText } from '../services/api';
+import { simplifyText, translateText } from '../src/services/api';
 import VoicePlayer from './VoicePlayer';
 
 function ResultsPanel() {

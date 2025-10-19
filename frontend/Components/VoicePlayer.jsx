@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX, Play, Pause, Loader } from 'lucide-react';
-import { textToSpeech } from '../services/api';
+import { textToSpeech } from '../src/services/api';
 
 function VoicePlayer({ text, className = "" }) {
   const [isPlaying, setIsPlaying] = useState(false);
