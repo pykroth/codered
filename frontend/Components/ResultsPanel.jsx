@@ -13,29 +13,29 @@ function ResultsPanel() {
 
   // Language options matching backend
   const languageOptions = [
+    { value: 'arabic', label: 'Arabic' },
+    { value: 'bengali', label: 'Bengali' },
+    { value: 'chinese', label: 'Chinese (Simplified)' },
+    { value: 'dutch', label: 'Dutch' },
     { value: 'english', label: 'English' },
-    { value: 'spanish', label: 'Spanish' },
     { value: 'french', label: 'French' },
     { value: 'german', label: 'German' },
-    { value: 'italian', label: 'Italian' },
-    { value: 'portuguese', label: 'Portuguese' },
-    { value: 'russian', label: 'Russian' },
-    { value: 'chinese', label: 'Chinese (Simplified)' },
-    { value: 'japanese', label: 'Japanese' },
-    { value: 'korean', label: 'Korean' },
-    { value: 'arabic', label: 'Arabic' },
-    { value: 'hindi', label: 'Hindi' },
-    { value: 'urdu', label: 'Urdu' },
-    { value: 'bengali', label: 'Bengali' },
-    { value: 'punjabi', label: 'Punjabi' },
-    { value: 'turkish', label: 'Turkish' },
-    { value: 'vietnamese', label: 'Vietnamese' },
-    { value: 'thai', label: 'Thai' },
-    { value: 'tagalog', label: 'Tagalog' },
-    { value: 'polish', label: 'Polish' },
-    { value: 'dutch', label: 'Dutch' },
     { value: 'greek', label: 'Greek' },
-    { value: 'khmer', label: 'Khmer' }
+    { value: 'hindi', label: 'Hindi' },
+    { value: 'italian', label: 'Italian' },
+    { value: 'japanese', label: 'Japanese' },
+    { value: 'khmer', label: 'Khmer' },
+    { value: 'korean', label: 'Korean' },
+    { value: 'polish', label: 'Polish' },
+    { value: 'portuguese', label: 'Portuguese' },
+    { value: 'punjabi', label: 'Punjabi' },
+    { value: 'russian', label: 'Russian' },
+    { value: 'spanish', label: 'Spanish' },
+    { value: 'tagalog', label: 'Tagalog' },
+    { value: 'thai', label: 'Thai' },
+    { value: 'turkish', label: 'Turkish' },
+    { value: 'urdu', label: 'Urdu' },
+    { value: 'vietnamese', label: 'Vietnamese' }
   ];
 
   const handleSimplify = async () => {
