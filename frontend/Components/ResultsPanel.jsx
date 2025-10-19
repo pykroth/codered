@@ -11,6 +11,32 @@ function ResultsPanel() {
   const [copied, setCopied] = useState(false);
   const [fontSize, setFontSize] = useState(14); // default font size in pixels
 
+  // Language options matching backend
+  const languageOptions = [
+    { value: 'english', label: 'English' },
+    { value: 'spanish', label: 'Spanish' },
+    { value: 'french', label: 'French' },
+    { value: 'german', label: 'German' },
+    { value: 'italian', label: 'Italian' },
+    { value: 'portuguese', label: 'Portuguese' },
+    { value: 'russian', label: 'Russian' },
+    { value: 'chinese', label: 'Chinese (Simplified)' },
+    { value: 'japanese', label: 'Japanese' },
+    { value: 'korean', label: 'Korean' },
+    { value: 'arabic', label: 'Arabic' },
+    { value: 'hindi', label: 'Hindi' },
+    { value: 'urdu', label: 'Urdu' },
+    { value: 'bengali', label: 'Bengali' },
+    { value: 'punjabi', label: 'Punjabi' },
+    { value: 'turkish', label: 'Turkish' },
+    { value: 'vietnamese', label: 'Vietnamese' },
+    { value: 'thai', label: 'Thai' },
+    { value: 'tagalog', label: 'Tagalog' },
+    { value: 'polish', label: 'Polish' },
+    { value: 'dutch', label: 'Dutch' },
+    { value: 'greek', label: 'Greek' }
+  ];
+
   const handleSimplify = async () => {
     if (!extractedText) return;
 
@@ -110,29 +136,29 @@ function ResultsPanel() {
             <div className="flex items-center space-x-3">
               <VoicePlayer text={simplifiedText} />
               {/* Text Size Controls */}
-                <div className="flex items-center space-x-1 border border-gray-300 rounded px-2 py-1">
-                  <button
-                    onClick={decreaseFontSize}
-                    className="p-1 hover:bg-gray-100 rounded transition-colors"
-                    title="Decrease text size"
-                  >
-                    <ZoomOut className="h-4 w-4 text-gray-600" />
-                  </button>
-                  <button
-                    onClick={resetFontSize}
-                    className="p-1 hover:bg-gray-100 rounded transition-colors"
-                    title="Reset text size"
-                  >
-                    <RotateCcw className="h-3 w-3 text-gray-600" />
-                  </button>
-                  <button
-                    onClick={increaseFontSize}
-                    className="p-1 hover:bg-gray-100 rounded transition-colors"
-                    title="Increase text size"
-                  >
-                    <ZoomIn className="h-4 w-4 text-gray-600" />
-                  </button>
-                </div>
+              <div className="flex items-center space-x-1 border border-gray-300 rounded px-2 py-1">
+                <button
+                  onClick={decreaseFontSize}
+                  className="p-1 hover:bg-gray-100 rounded transition-colors"
+                  title="Decrease text size"
+                >
+                  <ZoomOut className="h-4 w-4 text-gray-600" />
+                </button>
+                <button
+                  onClick={resetFontSize}
+                  className="p-1 hover:bg-gray-100 rounded transition-colors"
+                  title="Reset text size"
+                >
+                  <RotateCcw className="h-3 w-3 text-gray-600" />
+                </button>
+                <button
+                  onClick={increaseFontSize}
+                  className="p-1 hover:bg-gray-100 rounded transition-colors"
+                  title="Increase text size"
+                >
+                  <ZoomIn className="h-4 w-4 text-gray-600" />
+                </button>
+              </div>
               <div className="flex items-center space-x-2">
                 <Languages className="h-4 w-4 text-gray-500" />
                 <select
@@ -141,9 +167,11 @@ function ResultsPanel() {
                   disabled={isTranslating}
                   className="text-sm border border-gray-300 rounded px-2 py-1"
                 >
-                  <option value="english">English</option>
-                  <option value="spanish">Spanish</option>
-                  <option value="urdu">Urdu</option>
+                  {languageOptions.map((lang) => (
+                    <option key={lang.value} value={lang.value}>
+                      {lang.label}
+                    </option>
+                  ))}
                 </select>
                 {isTranslating && (
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-600"></div>

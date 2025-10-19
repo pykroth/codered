@@ -9,10 +9,56 @@ class TranslationService:
     def __init__(self):
         self.model = None
         self._initialize_client()
+        # Extended language support with commonly used languages
         self.language_codes = {
             "english": "en",
-            "spanish": "es", 
-            "urdu": "ur"
+            "spanish": "es",
+            "french": "fr",
+            "german": "de",
+            "italian": "it",
+            "portuguese": "pt",
+            "russian": "ru",
+            "chinese": "zh",
+            "japanese": "ja",
+            "korean": "ko",
+            "arabic": "ar",
+            "hindi": "hi",
+            "urdu": "ur",
+            "bengali": "bn",
+            "punjabi": "pa",
+            "turkish": "tr",
+            "vietnamese": "vi",
+            "thai": "th",
+            "tagalog": "tl",
+            "polish": "pl",
+            "dutch": "nl",
+            "greek": "el"
+        }
+        
+        # Map language codes to full names for prompts
+        self.language_names = {
+            "english": "English",
+            "spanish": "Spanish",
+            "french": "French",
+            "german": "German",
+            "italian": "Italian",
+            "portuguese": "Portuguese",
+            "russian": "Russian",
+            "chinese": "Simplified Chinese",
+            "japanese": "Japanese",
+            "korean": "Korean",
+            "arabic": "Arabic",
+            "hindi": "Hindi",
+            "urdu": "Urdu",
+            "bengali": "Bengali",
+            "punjabi": "Punjabi",
+            "turkish": "Turkish",
+            "vietnamese": "Vietnamese",
+            "thai": "Thai",
+            "tagalog": "Tagalog",
+            "polish": "Polish",
+            "dutch": "Dutch",
+            "greek": "Greek"
         }
     
     def _initialize_client(self):
@@ -37,14 +83,7 @@ class TranslationService:
             raise Exception("Translation service not configured")
         
         try:
-            # Map language names to proper language names
-            language_mapping = {
-                "english": "English",
-                "spanish": "Spanish", 
-                "urdu": "Urdu"
-            }
-            
-            target_lang = language_mapping.get(target_language.lower(), target_language)
+            target_lang = self.language_names.get(target_language.lower(), target_language)
             
             prompt = f"""You are a professional medical translator. Translate the following medical text to {target_lang}. 
 
@@ -54,6 +93,7 @@ Guidelines:
 - Keep the tone professional but accessible
 - Preserve any formatting (bold, lists, etc.)
 - If a medical term doesn't have a direct translation, provide both the original term and explanation
+- Use natural, native-speaker level language
 
 Text to translate:
 {text}"""
@@ -71,6 +111,7 @@ Text to translate:
     def _get_demo_translation(self, text: str, target_language: str) -> str:
         """
         Return demo translations for hackathon presentation
+        Only provides demos for Spanish and Urdu, returns original for others
         """
         if target_language.lower() == "spanish":
             return """**Resumen Simple**: 
@@ -115,8 +156,12 @@ Recuerda: Esta es información educativa, no consejo médico. Siempre consulta a
 یاد رکھیں: یہ تعلیمی معلومات ہے، طبی مشورہ نہیں۔ طبی فیصلوں کے لیے ہمیشہ اپنی ہیلتھ کیئر ٹیم سے مشورہ کریں۔"""
         
         else:
-            return text  # Return original text if language not supported
+            return text  # Return original text if language not supported in demo
     
     def get_supported_languages(self) -> list:
         """Get list of supported languages"""
         return list(self.language_codes.keys())
+    
+    def get_language_display_names(self) -> dict:
+        """Get dictionary of language codes to display names"""
+        return self.language_names.copy()
