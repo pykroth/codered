@@ -2,10 +2,11 @@ import { Upload, FileText, MessageSquare, Globe, Shield, ArrowRight, BookOpen, H
 import Navbar from '../../Components/Navbar';
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer";
+
 export default function MedLensHome() {
   const navigate = useNavigate()
   return (
-    <div className="min-h-screen bg-orange-50">
+    <div className="min-h-screen bg-gray-50">
         <Navbar/>
       {/* Hero Section */}
       <div className="max-w-5xl mx-auto px-6 pt-24 pb-16">
@@ -50,19 +51,19 @@ export default function MedLensHome() {
           
           <div className="grid md:grid-cols-3 gap-6">
             <div className="border border-gray-200 rounded-lg p-6">
-              <Globe className="w-8 h-8 text-yellow-600 mb-3" />
+              <Globe className="w-8 h-8 text-blue-600 mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Non-Native Speakers</h3>
               <p className="text-sm text-gray-600">Immigrants and refugees deserve to understand their health in their native language.</p>
             </div>
             
             <div className="border border-gray-200 rounded-lg p-6">
-              <Heart className="w-8 h-8 text-yellow-600 mb-3" />
+              <Heart className="w-8 h-8 text-blue-600 mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Elderly Patients</h3>
               <p className="text-sm text-gray-600">Simplified explanations help seniors manage complex chronic conditions independently.</p>
             </div>
             
             <div className="border border-gray-200 rounded-lg p-6">
-              <BookOpen className="w-8 h-8 text-yellow-600 mb-3" />
+              <BookOpen className="w-8 h-8 text-blue-600 mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Caregivers</h3>
               <p className="text-sm text-gray-600">Family members caring for loved ones need clear information to provide proper support.</p>
             </div>
@@ -164,7 +165,7 @@ export default function MedLensHome() {
 
           <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
             <div className="flex items-start gap-3">
-              <MessageSquare className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-1" />
+              <MessageSquare className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
               <div>
                 <p className="text-sm font-medium text-gray-900 mb-2">Then ask questions like:</p>
                 <ul className="text-sm text-gray-600 space-y-1">
