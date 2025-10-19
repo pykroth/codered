@@ -32,7 +32,7 @@ class AIService:
             raise Exception("AI service not configured")
         
         try:
-            prompt = f"""You are a patient educator. Simplify the following medical summary so a 12-year-old can understand it. Keep it accurate and reassuring. Avoid jargon unless explained. 
+            prompt = f"""You are a patient educator. Simplify the following medical summary so a 12-year-old can understand it. Keep it accurate and reassuring. Avoid jargon unless explained. Do not state that you summarized it for a 12-year-old to understand in your response. 
 
 Format your response as:
 1. **Simple Summary**: [Easy-to-understand explanation]
