@@ -36,6 +36,8 @@ function medicalReducer(state, action) {
         chatHistory: [],
         error: null 
       };
+    case 'SET_CHAT_HISTORY':
+      return { ...state, chatHistory: action.payload };
     default:
       return state;
   }
