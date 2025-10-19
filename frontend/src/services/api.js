@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'https://codered-w5ep.onrender.com';
 //process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 const api = axios.create({
