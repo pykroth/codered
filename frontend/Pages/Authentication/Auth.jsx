@@ -34,7 +34,7 @@ export default function Auth() {
         
         if (error) throw error;
         
-        navigate('/'); 
+        navigate('/upload-report'); 
       }
     } catch (error) {
       setMessage({ type: 'error', text: error.message });

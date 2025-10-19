@@ -5,12 +5,14 @@ import ResultsPanel from '../../Components/ResultsPanel';
 import QASection from '../../Components/QASection';
 import Footer from '../../Components/Footer';
 import { MedicalProvider } from '../../context/MedicalContext';
+import Navbar from '../../Components/Navbar';
 
 export default function UploadReport() {
  return (
   <MedicalProvider>
       <div className="min-h-screen bg-gray-50">
-        <Header />
+        <Navbar/>
+        {/* <Header /> */}
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto space-y-8">
             <FileUpload />
