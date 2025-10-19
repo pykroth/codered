@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <BookOpen className="w-6 h-6 text-blue-600" />
+              <BookOpen className="w-6 h-6 text-yellow-600" />
               <span className="text-xl font-bold text-gray-900">MedLens</span>
             </div>
             <p className="text-sm text-gray-600">
