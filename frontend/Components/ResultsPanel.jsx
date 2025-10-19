@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Languages, Copy, Check } from 'lucide-react';
+import { Brain, Languages, Copy, Check, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import { useMedical } from '../context/MedicalContext';
 import { simplifyText, translateText } from '../src/services/api';
 import VoicePlayer from './VoicePlayer';
@@ -9,6 +9,7 @@ function ResultsPanel() {
   const { extractedText, simplifiedText, isProcessing, currentLanguage } = state;
   const [isTranslating, setIsTranslating] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [fontSize, setFontSize] = useState(14); // default font size in pixels
 
   const handleSimplify = async () => {
     if (!extractedText) return;
@@ -62,6 +63,18 @@ function ResultsPanel() {
     }
   };
 
+  const increaseFontSize = () => {
+    setFontSize(prev => Math.min(prev + 2, 24)); // max 24px
+  };
+
+  const decreaseFontSize = () => {
+    setFontSize(prev => Math.max(prev - 2, 10)); // min 10px
+  };
+
+  const resetFontSize = () => {
+    setFontSize(14); // reset to default
+  };
+
   if (!extractedText) {
     return null;
   }
@@ -96,6 +109,30 @@ function ResultsPanel() {
             <h3 className="text-lg font-medium text-gray-900">Simplified Explanation</h3>
             <div className="flex items-center space-x-3">
               <VoicePlayer text={simplifiedText} />
+              {/* Text Size Controls */}
+                <div className="flex items-center space-x-1 border border-gray-300 rounded px-2 py-1">
+                  <button
+                    onClick={decreaseFontSize}
+                    className="p-1 hover:bg-gray-100 rounded transition-colors"
+                    title="Decrease text size"
+                  >
+                    <ZoomOut className="h-4 w-4 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={resetFontSize}
+                    className="p-1 hover:bg-gray-100 rounded transition-colors"
+                    title="Reset text size"
+                  >
+                    <RotateCcw className="h-3 w-3 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={increaseFontSize}
+                    className="p-1 hover:bg-gray-100 rounded transition-colors"
+                    title="Increase text size"
+                  >
+                    <ZoomIn className="h-4 w-4 text-gray-600" />
+                  </button>
+                </div>
               <div className="flex items-center space-x-2">
                 <Languages className="h-4 w-4 text-gray-500" />
                 <select
@@ -118,7 +155,10 @@ function ResultsPanel() {
           <div className="relative">
             <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
               <div className="prose prose-sm max-w-none">
-                <pre className="whitespace-pre-wrap font-sans text-gray-800 leading-relaxed">
+                <pre 
+                  className="whitespace-pre-wrap font-sans text-gray-800 leading-relaxed"
+                  style={{ fontSize: `${fontSize}px` }}
+                >
                   {simplifiedText}
                 </pre>
               </div>

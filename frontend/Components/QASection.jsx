@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Send, Bot, User } from 'lucide-react';
+import { MessageCircle, Send, Bot, User, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import { useMedical } from '../context/MedicalContext';
 import { askQuestion } from '../src/services/api';
 import VoicePlayer from './VoicePlayer';
@@ -9,6 +9,7 @@ function QASection() {
   const { extractedText, simplifiedText, chatHistory } = state;
   const [question, setQuestion] = useState('');
   const [isAsking, setIsAsking] = useState(false);
+  const [fontSize, setFontSize] = useState(14); // default font size in pixels
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,15 +54,54 @@ function QASection() {
     }
   };
 
+  const increaseFontSize = () => {
+    setFontSize(prev => Math.min(prev + 2, 24)); // max 24px
+  };
+
+  const decreaseFontSize = () => {
+    setFontSize(prev => Math.max(prev - 2, 10)); // min 10px
+  };
+
+  const resetFontSize = () => {
+    setFontSize(14); // reset to default
+  };
+
   if (!extractedText) {
     return null;
   }
 
   return (
     <div className="card">
-      <div className="flex items-center space-x-2 mb-6">
-        <MessageCircle className="h-6 w-6 text-primary-600" />
-        <h2 className="text-2xl font-semibold text-gray-900">Ask Questions</h2>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center space-x-2">
+          <MessageCircle className="h-6 w-6 text-primary-600" />
+          <h2 className="text-2xl font-semibold text-gray-900">Ask Questions</h2>
+        </div>
+  
+        {/* Text Size Controls */}
+        <div className="flex items-center space-x-1 border border-gray-300 rounded px-2 py-1">
+          <button
+            onClick={decreaseFontSize}
+            className="p-1 hover:bg-gray-100 rounded transition-colors"
+            title="Decrease text size"
+          >
+            <ZoomOut className="h-4 w-4 text-gray-600" />
+          </button>
+          <button
+            onClick={resetFontSize}
+            className="p-1 hover:bg-gray-100 rounded transition-colors"
+            title="Reset text size"
+          >
+            <RotateCcw className="h-3 w-3 text-gray-600" />
+          </button>
+          <button
+            onClick={increaseFontSize}
+            className="p-1 hover:bg-gray-100 rounded transition-colors"
+            title="Increase text size"
+          >
+            <ZoomIn className="h-4 w-4 text-gray-600" />
+          </button>
+        </div>
       </div>
 
       <div className="mb-6">
@@ -93,7 +133,12 @@ function QASection() {
                     <User className="h-4 w-4 mt-0.5 text-white flex-shrink-0" />
                   )}
                   <div className="flex-1">
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                    <p 
+                      className="whitespace-pre-wrap"
+                      style={{ fontSize: `${fontSize}px` }}
+                    >
+                      {message.content}
+                    </p>
                     <div className="flex items-center justify-between mt-1">
                       <p className={`text-xs ${
                         message.type === 'user' ? 'text-primary-100' : 'text-gray-500'
